@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:bookly_app/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 
@@ -21,9 +22,12 @@ class SplashViewBody extends StatelessWidget {
           ),
         ),
         SizedBox(height: 10),
-        Text(
-          'Read Free Book',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        FadeInUp(
+          delay: Duration(seconds: 2),
+          child: Text(
+            'Read Free Book',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          ),
         ),
       ],
     );
