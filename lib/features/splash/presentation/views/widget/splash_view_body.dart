@@ -1,6 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:bookly_app/core/utils/assets.dart';
+import 'package:bookly_app/features/home/presentation/views/home.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class SplashViewBody extends StatelessWidget {
   const SplashViewBody({super.key});
@@ -22,14 +25,30 @@ class SplashViewBody extends StatelessWidget {
           ),
         ),
         SizedBox(height: 10),
-        FadeInUp(
-          delay: Duration(seconds: 2),
-          child: Text(
-            'Read Free Book',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-          ),
-        ),
+        fadeInAnimation(),
       ],
+    );
+  }
+
+  FadeInUp fadeInAnimation() {
+    return FadeInUp(
+      
+        delay: Duration(seconds: 2),
+        onFinish: (direction) {
+          navigateToTome();
+        },
+        child: Text(
+          'Read Free Book',
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        ),
+      );
+  }
+
+  void navigateToTome() {
+    Get.to(
+      Home(),
+      transition: Transition.leftToRight,
+      duration: Duration(seconds: 3),
     );
   }
 }
