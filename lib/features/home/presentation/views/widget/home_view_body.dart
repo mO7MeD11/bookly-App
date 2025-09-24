@@ -22,7 +22,7 @@ class HomeViewBody extends StatelessWidget {
               children: [
                 Gap(70),
                 CustomAppBar(),
-                CustomListViewItem(),
+                CustomListView(),
                 Gap(10),
                 Text('Best Seller', style: Styles.textStyle20),
                 Gap(20),
