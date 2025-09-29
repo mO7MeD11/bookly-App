@@ -1,10 +1,8 @@
 import 'package:bookly_app/core/utils/assets.dart';
 import 'package:flutter/widgets.dart';
- 
 
 class AppLogo {
-  
-static Container logo({required double width , required double height}) {
+  static Container logo({required double width, required double height}) {
     return Container(
       width: width,
       height: height,
@@ -16,4 +14,3 @@ static Container logo({required double width , required double height}) {
     );
   }
 }
-

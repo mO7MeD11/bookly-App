@@ -62,9 +62,6 @@ class BookDetailsBody extends StatelessWidget {
   }
 }
 
-
-
-
 class CustomAppBarBookDetails extends StatelessWidget {
   const CustomAppBarBookDetails({super.key});
 
