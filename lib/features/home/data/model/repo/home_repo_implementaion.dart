@@ -37,14 +37,14 @@ class HomeRepoImplementation extends HomeRepo {
       );
       List<BookModel> books = [];
       for (var item in data['items']) {
-        books.add(item);
+        books.add(BookModel.fromJson(item));
       }
       return right(books);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDio(e));
       } else {
-        return left(ServerFailure(errorMessage: 'oops there was ane error'));
+        return left(ServerFailure(errorMessage: 'oops there was ane error ${e.toString()}'));
       }
     }
   }
