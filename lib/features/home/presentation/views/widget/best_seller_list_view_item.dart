@@ -1,16 +1,18 @@
 import 'package:bookly_app/core/utils/assets.dart';
 import 'package:bookly_app/core/utils/styles.dart';
+import 'package:bookly_app/features/home/data/model/book_model/book_model.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
 class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({super.key});
+  const BestSellerListViewItem({super.key, this.book});
+  final BookModel? book;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push('/homeDetails');
+        GoRouter.of(context).push('/homeDetails' , extra: book);
       },
       child: SizedBox(
         height: 150,
@@ -23,7 +25,9 @@ class BestSellerListViewItem extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
-                    image: NetworkImage(AssetsBookly.test),
+                    image: NetworkImage(
+                      book!.volumeInfo!.imageLinks!.thumbnail!,
+                    ),
 
                     fit: BoxFit.cover,
                   ),
@@ -39,19 +43,22 @@ class BestSellerListViewItem extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * .5,
                     child: Text(
-                      'King Kong is a story of adventure, love, and the clash between nature’s wild power and human ambition.',
+                      book!.volumeInfo!.title!,
                       style: Styles.textStyle22,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   Gap(3),
-                  Text('K.3 King Kong', style: Styles.textStyle14),
+                  Text(
+                    book!.volumeInfo!.authors?[0] ?? ' ',
+                    style: Styles.textStyle14,
+                  ),
                   Gap(5),
                   Row(
                     children: [
                       Text(
-                        '19.99 \$',
+                        'Free',
                         style: Styles.textStyle20.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -60,7 +67,7 @@ class BestSellerListViewItem extends StatelessWidget {
 
                       Icon(Icons.star, color: Colors.yellow),
                       Text(
-                        '4.8 (234)',
+                        '0 (0)',
                         style: Styles.textStyle14.copyWith(color: Colors.grey),
                       ),
                     ],

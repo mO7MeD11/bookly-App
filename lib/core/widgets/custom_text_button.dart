@@ -7,18 +7,19 @@ class CustomTextButton extends StatelessWidget {
     required this.text,
     required this.borderRadius,
     required this.textColor,
-    required this.backGroundColor,
+    required this.backGroundColor,   this.ontap,
   });
   final String text;
   final BorderRadius borderRadius;
   final Color textColor;
   final Color backGroundColor;
+  final Function()? ontap;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 50,
       child: TextButton(
-        onPressed: () {},
+        onPressed: ontap,
 
         style: TextButton.styleFrom(
           backgroundColor: backGroundColor,

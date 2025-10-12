@@ -17,7 +17,7 @@ class HomeRepoImplementation extends HomeRepo {
       );
       List<BookModel> books = [];
       for (var item in data['items']) {
-        books.add(item);
+        books.add(BookModel.fromJson(item));
       }
       return right(books);
     } catch (e) {
@@ -44,7 +44,35 @@ class HomeRepoImplementation extends HomeRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDio(e));
       } else {
-        return left(ServerFailure(errorMessage: 'oops there was ane error ${e.toString()}'));
+        return left(
+          ServerFailure(
+            errorMessage: 'oops there was ane error ${e.toString()}',
+          ),
+        );
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<BookModel>>> fetchSimilarBook(category) async {
+    try {
+      var data = await apiService.get(
+        endpoint: 'volumes?Filtering=free-ebooks&q=$category&Sorting=relevance',
+      );
+      List<BookModel> books = [];
+      for (var item in data['items']) {
+        books.add(BookModel.fromJson(item));
+      }
+      return right(books);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDio(e));
+      } else {
+        return left(
+          ServerFailure(
+            errorMessage: 'oops there was ane error ${e.toString()}',
+          ),
+        );
       }
     }
   }
